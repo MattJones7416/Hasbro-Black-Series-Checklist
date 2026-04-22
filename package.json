@@ -1,0 +1,11 @@
+{
+  "name": "hasbro-black-series-checklist",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build_catalog.mjs"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  }
+}
