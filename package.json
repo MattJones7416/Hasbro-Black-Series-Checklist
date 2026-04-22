@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "hydrate-images": "node scripts/hydrate_image_urls.mjs",
     "build": "node scripts/build_catalog.mjs"
   },
   "dependencies": {
