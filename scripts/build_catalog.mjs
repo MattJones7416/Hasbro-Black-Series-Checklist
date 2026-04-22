@@ -6,8 +6,9 @@ const repoRoot = path.resolve(path.dirname(new URL(import.meta.url).pathname), "
 const workbookPath = path.join(repoRoot, "data", "Hasbro Black Series Catalog.xlsx");
 const outputPath = path.join(repoRoot, "dist", "black-series-catalog.json");
 const summaryPath = path.join(repoRoot, "dist", "catalog-summary.json");
+const officialCollectionUrl = "https://shop.hasbro.com/en-us/star-wars/black-series";
 
-const allowedTypes = new Set(["Figures", "Helmets", "Lightsaber Range"]);
+const allowedTypes = new Set(["Figures", "Helmets", "Lightsabers"]);
 
 function toOptionalString(value) {
   if (value === null || value === undefined) return "";
@@ -39,8 +40,12 @@ function normalizeType(rawType) {
   const lower = value.toLowerCase();
   if (lower === "figures" || lower === "figure") return "Figures";
   if (lower === "helmets" || lower === "helmet") return "Helmets";
-  if (lower === "lightsabers" || lower === "lightsaber" || lower === "lightsaber range") return "Lightsaber Range";
+  if (lower === "lightsabers" || lower === "lightsaber" || lower === "lightsaber range") return "Lightsabers";
   return value;
+}
+
+function officialUrlForType() {
+  return officialCollectionUrl;
 }
 
 function buildCatalogRow(row) {
@@ -48,13 +53,14 @@ function buildCatalogRow(row) {
   const type = normalizeType(row.type);
   const name = toOptionalString(row.name);
   const category = toOptionalString(row.category) || toOptionalString(row.release_year) || "Unknown";
-  const line = toOptionalString(row.line);
+  const line = normalizeType(row.line) === "Lightsabers" ? "Lightsabers" : toOptionalString(row.line);
   const wave = toOptionalString(row.wave);
   const displayNumber = toOptionalString(row.display_number);
   const releaseYear = toOptionalInt(row.release_year);
   const retailPrice = toOptionalFloat(row.retail_price_usd);
   const status = toOptionalString(row.status);
   const productUrl = toOptionalString(row.product_url);
+  const officialUrl = toOptionalString(row.official_url);
   const imageUrl = toOptionalString(row.image_url);
   const description = toOptionalString(row.description);
   const source = toOptionalString(row.source) || "Manual";
@@ -73,7 +79,7 @@ function buildCatalogRow(row) {
     category,
     difficulty: null,
     sheets: null,
-    link: productUrl,
+    link: officialUrl || officialUrlForType(type) || productUrl,
     instructionsLink: "",
     type,
     status,

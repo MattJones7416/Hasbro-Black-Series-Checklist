@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "sync-official-links": "node scripts/sync_official_urls.mjs",
     "hydrate-images": "node scripts/hydrate_image_urls.mjs",
     "build": "node scripts/build_catalog.mjs"
   },
