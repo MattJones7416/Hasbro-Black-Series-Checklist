@@ -2,6 +2,26 @@
 
 Source-of-truth data repo for the Hasbro Black Series Checklist app.
 
+## Public app pages
+
+This repo now includes GitHub Pages-ready support and privacy pages in `docs/`.
+
+- Support page: `docs/support.html`
+- Privacy policy: `docs/privacy.html`
+- Landing page: `docs/index.html`
+- GitHub support page: `SUPPORT.md`
+- GitHub privacy page: `PRIVACY.md`
+
+If you enable GitHub Pages for the `main` branch and `/docs` folder, the public URLs will be:
+
+- `https://mattjones7416.github.io/Hasbro-Black-Series-Checklist/support.html`
+- `https://mattjones7416.github.io/Hasbro-Black-Series-Checklist/privacy.html`
+
+Immediate GitHub-hosted URLs you can use after pushing to `main`:
+
+- `https://github.com/MattJones7416/Hasbro-Black-Series-Checklist/blob/main/SUPPORT.md`
+- `https://github.com/MattJones7416/Hasbro-Black-Series-Checklist/blob/main/PRIVACY.md`
+
 ## What lives here
 
 - `data/Hasbro Black Series Catalog.xlsx`: the spreadsheet you can edit.
